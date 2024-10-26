@@ -4,7 +4,7 @@
   "main": "main.js",
   "scripts": {
     "ng": "ng",
-    "start": "serve -s dist/task-management-app-frontend",
+    "start": "serve -s dist/task-management-app-frontend/browser",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

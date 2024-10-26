@@ -20,4 +20,4 @@ RUN npm run build
 RUN npm install -g serve
 
 # Comando para iniciar el servidor
-CMD ["serve", "-s", "dist/task-management-app-frontend"]
+CMD ["serve", "-s", "dist/task-management-app-frontend/browser"]
