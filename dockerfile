@@ -14,7 +14,7 @@ RUN npm install --omit=dev
 COPY . .
 
 # Construir la aplicación para producción
-RUN npm run build --prod
+RUN npm run build
 
 # Instalar un servidor web para servir la aplicación
 RUN npm install -g serve
