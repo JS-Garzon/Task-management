@@ -9,6 +9,7 @@ import { AuthService } from './../auth/auth.service';
 import { Component } from '@angular/core';
 import { UsersService } from '../users/users.service';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -23,6 +24,7 @@ export default class ProfileComponent {
   imgSrc: string | ArrayBuffer | null = '';
   existImg: string = '';
   file!: File;
+  private baseUrl = environment.baseUrl;
   input!: any;
   constructor(
     private authService: AuthService,
@@ -44,7 +46,7 @@ export default class ProfileComponent {
         this.userInfo = user;
 
         this.existImg = this.userInfo.photo;
-        this.imgSrc = this.existImg ? `http://localhost:3000/${this.userInfo.photo}` : ''
+        this.imgSrc = this.existImg ? `${this.baseUrl}/${this.userInfo.photo}` : ''
         this.formUserInfo.patchValue({
           username: this.userInfo.username,
           email: this.userInfo.email,

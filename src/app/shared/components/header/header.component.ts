@@ -5,6 +5,7 @@ import { Token } from '../../models/token.model';
 import { Router, RouterLinkActive, RouterLinkWithHref } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { ThemeService } from '../../theme/theme.service';
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -20,6 +21,7 @@ export class HeaderComponent {
   isAdminRole!: boolean;
   imgSrc: string | ArrayBuffer | null = '';
   existImg: string = '';
+  private baseUrl = environment.baseUrl;
   private router = inject(Router);
   @ViewChild('dropdown', { static: false }) dropdown!: ElementRef;
   constructor(private authService: AuthService, private themeService: ThemeService, private eRef: ElementRef) {}
@@ -31,7 +33,7 @@ export class HeaderComponent {
         this.userInfo = user;
         this.userRoles = this.userInfo.roles;
         this.existImg = this.userInfo.photo
-        this.imgSrc = this.existImg ? `http://localhost:3000/${this.existImg}` : ''
+        this.imgSrc = this.existImg ? `${this.baseUrl}/${this.existImg}` : ''
         this.validateIfIsAdminRole();
         this.checkScreenSize();
       },
