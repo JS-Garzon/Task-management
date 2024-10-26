@@ -8,11 +8,12 @@
     <div class="flex items-center md:order-2 space-x-2 md:space-x-0 rtl:space-x-reverse">
 
       <button type="button" (click)="showDropDown($event)"
-        class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+        class="flex justify-center items-center text-sm h-12 w-12 dark:hover:bg-gray-800 hover:bg-gray-200 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
         id="user-menu-button" aria-expanded="false">
         <span class="sr-only">Open user menu</span>
-        <img class="w-10 h-10 rounded-full" [src]="imgSrc"
+        <img *ngIf="existImg" class="w-10 h-10 rounded-full" [src]="imgSrc"
           alt="user photo">
+          <i *ngIf="!existImg" class="pi pi-user text-2xl text-[#7c7c7c]"></i>
       </button>
 
       <div #dropdown class="drop-down">

@@ -5,9 +5,12 @@
     <h2 class="font-semibold text-xl text-gray-900 dark:text-white mb-4">General information</h2>
     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload avatar</label>
     <div class="mb-5 flex items-center">
-      <img class="mr-4 md:mb-0 rounded-full w-20 h-20"
+      <img *ngIf="existImg" class="mr-4 md:mb-0 rounded-full w-20 h-20"
         [src]="imgSrc || 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png'"
          alt="">
+      <div *ngIf="!existImg" class="w-[7rem] h-[6rem] flex justify-center items-center rounded-full border-2 border-[#7c7c7c] mr-4 md:mb-0">
+        <i class="pi pi-user text-5xl text-[#7c7c7c]"></i>
+      </div>
       <div class="w-full">
         <input formControlName="photo" id="file_input" (change)="imageUploaded($event)" accept="image/png, image/gif, image/jpeg"
           class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"

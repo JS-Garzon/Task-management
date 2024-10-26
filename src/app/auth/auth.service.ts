@@ -6,6 +6,7 @@ import { jwtDecode } from 'jwt-decode';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Token } from '../shared/models/token.model';
 import { MessagesInfoService } from '../shared/services/messages-info.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ import { MessagesInfoService } from '../shared/services/messages-info.service';
 export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = environment.baseUrl;
   errorMessage: any;
   constructor(private messagesInfoService: MessagesInfoService) {}
 
@@ -31,7 +32,7 @@ export class AuthService {
 
 
   getUserInfo(): Observable<any> {
-    debugger
+
     const userId = this.getUserIdFromToken();
     if (userId) {
       return this.http.get(`${this.baseUrl}/users/${userId.sub}`);

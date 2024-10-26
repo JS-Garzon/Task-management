@@ -8,11 +8,12 @@ import {
 import { AuthService } from './../auth/auth.service';
 import { Component } from '@angular/core';
 import { UsersService } from '../users/users.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
@@ -20,6 +21,7 @@ export default class ProfileComponent {
   userInfo!: any;
   formUserInfo: FormGroup;
   imgSrc: string | ArrayBuffer | null = '';
+  existImg: string = '';
   file!: File;
   input!: any;
   constructor(
@@ -40,14 +42,14 @@ export default class ProfileComponent {
     this.userInfo = this.authService.getUserInfo().subscribe(
       (user) => {
         this.userInfo = user;
-        debugger
-        this.imgSrc = `http://localhost:3000/${this.userInfo.photo}` || 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png'
+
+        this.existImg = this.userInfo.photo;
+        this.imgSrc = this.existImg ? `http://localhost:3000/${this.userInfo.photo}` : ''
         this.formUserInfo.patchValue({
           username: this.userInfo.username,
           email: this.userInfo.email,
           roles: this.userInfo.roles,
         });
-        console.log('User Info:', this.userInfo);
       },
       (error) => {
         console.error('Error fetching user info', error);
@@ -56,7 +58,7 @@ export default class ProfileComponent {
   }
 
   updateProfile() {
-    debugger
+
     const payload = this.formUserInfo.value;
     delete payload.roles;
     delete payload.photo
@@ -64,7 +66,7 @@ export default class ProfileComponent {
   }
 
   imageUploaded(event: any) {
-    debugger
+
     this.getFile(event);
     if (!this.isValidFileType()) {
       this.handleInvalidFile();
@@ -85,10 +87,6 @@ export default class ProfileComponent {
       const formData = new FormData();
       formData.append('file', this.file, this.file.name);
       this.usersService.updateUser(this.userInfo._id, formData);
-      // this.http.patch(`/api/users/{id}`, formData).subscribe(response => {
-      //   console.log(response);
-      // });
-      // console.log(formData);
     }
   }
 

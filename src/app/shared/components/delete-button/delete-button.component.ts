@@ -17,7 +17,7 @@ export class DeleteButtonComponent {
 
 
   togglePopover(event: MouseEvent) {
-    debugger
+
     this.deleteButton = event.currentTarget as HTMLElement;
     this.showPopover = !this.showPopover;
     if (this.showPopover) {
@@ -70,8 +70,6 @@ export class DeleteButtonComponent {
   }
 
   confirmDelete() {
-    // Lógica para eliminar el elemento
-    console.log("Elemento eliminado");
     this.showPopover = false;
     this.destroyPopperInstance();
   }

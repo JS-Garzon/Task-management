@@ -3,12 +3,13 @@ import { inject, Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { catchError, NotFoundError, Observable, throwError } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TasksService {
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = environment.baseUrl;
   userInfo!: any;
   constructor(
     private http: HttpClient,

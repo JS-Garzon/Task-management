@@ -19,18 +19,19 @@ export class HeaderComponent {
   userRoles!: string[];
   isAdminRole!: boolean;
   imgSrc: string | ArrayBuffer | null = '';
+  existImg: string = '';
   private router = inject(Router);
   @ViewChild('dropdown', { static: false }) dropdown!: ElementRef;
   constructor(private authService: AuthService, private themeService: ThemeService, private eRef: ElementRef) {}
 
   ngOnInit() {
-    debugger
+
     this.authService.getUserInfo().subscribe(
       (user) => {
         this.userInfo = user;
         this.userRoles = this.userInfo.roles;
-        this.imgSrc = `http://localhost:3000/${this.userInfo.photo}`
-        console.log(this.userInfo)
+        this.existImg = this.userInfo.photo
+        this.imgSrc = this.existImg ? `http://localhost:3000/${this.existImg}` : ''
         this.validateIfIsAdminRole();
         this.checkScreenSize();
       },

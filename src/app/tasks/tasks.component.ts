@@ -191,8 +191,6 @@ export default class TasksComponent {
     if (taskIndex !== -1 && listIndex !== -1) {
       Object.assign(this.selectedTask, this.taskForm.value);
       this.taskList[listIndex].tasks[taskIndex] = this.selectedTask;
-    } else {
-      console.log('Task no encontrado');
     }
   }
 

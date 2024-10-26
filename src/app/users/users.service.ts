@@ -4,13 +4,14 @@ import { Injectable, inject } from '@angular/core';
 import { User } from '../shared/models/user.model';
 import { catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = environment.baseUrl;
   constructor(private router: Router, private messageService: MessageService) { }
 
   getTheme() {
