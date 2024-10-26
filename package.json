@@ -4,8 +4,8 @@
   "main": "main.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "serve -s dist/task-management-app-frontend",
+    "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "electron": "ng build && electron .",
